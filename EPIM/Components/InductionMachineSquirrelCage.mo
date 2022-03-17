@@ -119,6 +119,5 @@ Implementing the same model in another simulation environment, you might have to
 </p>
 </html>"), Icon(graphics={Text(
           extent={{-100,100},{100,70}},
-          lineColor={28,108,200},
-          textString="%Type")}));
+          lineColor={28,108,200})}));
 end InductionMachineSquirrelCage;
