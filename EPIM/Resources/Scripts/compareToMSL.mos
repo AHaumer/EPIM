@@ -1,0 +1,9 @@
+﻿// Compare MSL's and local AIM model
+removePlots(false);
+
+simulateModel("Modelica.Electrical.Machines.Examples.InductionMachines.IMC_DOL", stopTime=100, numberOfIntervals=0, outputInterval=0.001, tolerance=1e-06, resultFile="IMC_DOL");
+simulateModel("EPIM.Examples.IMC_DOL", stopTime=100, numberOfIntervals=0, outputInterval=0.001, tolerance=1e-06, resultFile="IMC_DOL");
+
+createPlot(id=1, position={15, 15, 1019, 704}, y={"loadInertia.flange_a.tau", "loadInertia.w"}, range={0.0, 1.5, -300.0, 500.0}, autoscale=false, grid=true, online=true, subPlot=101, colors={{28,108,200}, {238,46,47}}, timeUnit="s", displayUnits={"N.m", "rad/s"}, plotInAll=true);
+createPlot(id=1, position={15, 15, 1019, 704}, y={"aimc.is[1]", "currentQuasiRMSSensor.I"}, range={0.0, 1.0, -1500.0, 1500.0}, autoscale=false, grid=true, online=true, subPlot=102, colors={{238,46,47}, {28,108,200}}, range2={0.1, 0.7000000000000001}, timeUnit="s", displayUnits={"A", "A"}, plotInAll=true);
+
