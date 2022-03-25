@@ -1,8 +1,6 @@
 within EPIM.ParameterRecords;
 record ImcData
   import Modelica.Units.SI;
-  parameter String Type="Standard" "Machine type";
-  parameter SI.Voltage VsNominal=100 "Nominal stator voltage per phase";
   extends
     Modelica.Electrical.Machines.Utilities.ParameterRecords.IM_SquirrelCageData(
     final Js=Jr,

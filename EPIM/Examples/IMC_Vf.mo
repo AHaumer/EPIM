@@ -3,7 +3,7 @@ model IMC_Vf
   "Test example: InductionMachineSquirrelCage fed by voltage/frequency inverter"
   extends Modelica.Icons.Example;
   constant Integer m=3 "Number of phases";
-  parameter Modelica.Units.SI.Voltage VNominal=imc.imcData.VsNominal "Nominal RMS voltage per phase";
+  parameter Modelica.Units.SI.Voltage VNominal=100 "Nominal RMS voltage per phase";
   parameter Modelica.Units.SI.Frequency fNominal=imc.imcData.fsNominal "Nominal frequency";
   parameter Modelica.Units.SI.Torque TLoad=161.4 "Nominal load torque";
   parameter Modelica.Units.SI.AngularVelocity wLoad(displayUnit="rev/min")=1440.45*2*Modelica.Constants.pi/60 "Nominal load speed";
