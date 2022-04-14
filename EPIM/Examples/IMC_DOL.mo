@@ -2,7 +2,7 @@ within EPIM.Examples;
 model IMC_DOL "Test example: InductionMachineSquirrelCage direct-on-line"
   extends Modelica.Icons.Example;
 
-  import Modelica.Units.SI;
+  import SI=Modelica.SIunits;
 
   constant Integer m=3 "Number of phases";
   parameter SI.Voltage VNominal=100 "Nominal RMS voltage per phase";
@@ -12,8 +12,7 @@ model IMC_DOL "Test example: InductionMachineSquirrelCage direct-on-line"
   parameter SI.AngularVelocity wLoad(displayUnit="rev/min")=1440.45*2*Modelica.Constants.pi/60 "Nominal load speed";
   parameter SI.Inertia JLoad=0.29 "Load's moment of inertia";
 
-  Components.InductionMachineSquirrelCage
-                 aimc(
+  Components.InductionMachineSquirrelCage aimc(
     imcData(
       Jr=aimcData.Jr,
       p=aimcData.p,
@@ -27,20 +26,19 @@ model IMC_DOL "Test example: InductionMachineSquirrelCage direct-on-line"
       Rr=aimcData.Rr,
       TrRef=aimcData.TrRef,
       alpha20r=aimcData.alpha20r),
-                      wM(fixed=true), deltaM(fixed=true))
+      wM(fixed=true), deltaM(fixed=true))
     annotation (Placement(transformation(extent={{-20,-80},{0,-60}})));
   Modelica.Electrical.Machines.Sensors.CurrentQuasiRMSSensor currentQuasiRMSSensor
     annotation (Placement(transformation(extent={{-10,10},{10,-10}}, rotation=270,
         origin={-10,-30})));
-  Modelica.Electrical.Polyphase.Sources.SineVoltage
-                         sineVoltage(
+  Modelica.Electrical.MultiPhase.Sources.SineVoltage sineVoltage(
     final m=m,
     V=fill(sqrt(2/3)*VNominal, m),
-    f=fill(fNominal, m))  annotation (Placement(transformation(
+    freqHz=fill(fNominal, m))       annotation (Placement(transformation(
         origin={-10,30},
         extent={{10,10},{-10,-10}},
         rotation=270)));
-  Modelica.Electrical.Polyphase.Basic.Star star(final m=m) annotation (
+  Modelica.Electrical.MultiPhase.Basic.Star star(final m=m) annotation (
       Placement(transformation(extent={{10,-10},{-10,10}},
         rotation=270,
         origin={-10,60})));
@@ -63,7 +61,7 @@ model IMC_DOL "Test example: InductionMachineSquirrelCage direct-on-line"
   Modelica.Blocks.Sources.Constant fs(k=fNominal) annotation (Placement(transformation(extent={{-100,-80},{-80,-60}})));
   Modelica.Blocks.Continuous.Integrator theta_s(k=2*Modelica.Constants.pi)
     annotation (Placement(transformation(extent={{-70,-80},{-50,-60}})));
-  Modelica.Electrical.Polyphase.Ideal.IdealClosingSwitch switch(Ron={1e-5,1e-5,1e-5}, Goff={1e-5,1e-5,1e-5})
+  Modelica.Electrical.MultiPhase.Ideal.IdealClosingSwitch switch(Ron={1e-5,1e-5,1e-5}, Goff={1e-5,1e-5,1e-5})
     annotation (Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=270,
@@ -73,7 +71,7 @@ model IMC_DOL "Test example: InductionMachineSquirrelCage direct-on-line"
   Modelica.Blocks.Routing.BooleanReplicator booleanReplicator(nout=m)
     annotation (Placement(transformation(extent={{-46,-6},{-34,6}})));
 
-  parameter Modelica.Electrical.Machines.Utilities.ParameterRecords.IM_SquirrelCageData aimcData "Induction machine data"
+  parameter Modelica.Electrical.Machines.Utilities.ParameterRecords.AIM_SquirrelCageData aimcData "Induction machine data"
     annotation (Placement(transformation(extent={{40,-40},{60,-20}})));
 equation
   connect(star.pin_n, ground.p)

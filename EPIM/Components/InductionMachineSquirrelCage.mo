@@ -2,17 +2,17 @@ within EPIM.Components;
 model InductionMachineSquirrelCage
   "Induction machine model based on space phasor equations"
   extends Modelica.Electrical.Machines.Icons.Machine;
-  import Modelica.Units.SI;
+  import SI=Modelica.SIunits;
   import Modelica.Electrical.Machines.Thermal.convertResistance;
   import Modelica.Constants.pi;
   import Modelica.ComplexMath.j;
   import Modelica.ComplexMath.conj;
   import Modelica.ComplexMath.real;
   import Modelica.ComplexMath.imag;
-  import 'abs' = Modelica.ComplexMath.abs;
+  import Modelica.ComplexMath.'abs';
   import Modelica.ComplexMath.arg;
   import Modelica.ComplexMath.exp;
-  import 'sum' = Modelica.ComplexMath.sum;
+  import Modelica.ComplexMath.'sum';
   replaceable parameter ParameterRecords.ImcData imcData
     annotation (Placement(transformation(extent={{-10,60},{10,80}})));
   parameter SI.Temperature TsOperational=293.15
@@ -51,9 +51,9 @@ model InductionMachineSquirrelCage
   SI.AngularVelocity wF "Angular velocity of choosen frame";
   Modelica.Mechanics.Rotational.Interfaces.Flange_a flange
     annotation (Placement(transformation(extent={{90,-10},{110,10}})));
-  Modelica.Electrical.Polyphase.Interfaces.PositivePlug plug_sp(m=m)
+  Modelica.Electrical.MultiPhase.Interfaces.PositivePlug plug_sp(m=m)
     annotation (Placement(transformation(extent={{50,90},{70,110}})));
-  Modelica.Electrical.Polyphase.Interfaces.NegativePlug plug_sn(m=m)
+  Modelica.Electrical.MultiPhase.Interfaces.NegativePlug plug_sn(m=m)
     annotation (Placement(transformation(extent={{-70,90},{-50,110}})));
   Modelica.Blocks.Interfaces.RealInput deltaF "Position of choosen frame"
     annotation (Placement(transformation(extent={{-120,-20},{-80,20}})));

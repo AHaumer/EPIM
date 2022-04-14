@@ -2,23 +2,24 @@ within EPIM.Examples;
 model IMC_Vf
   "Test example: InductionMachineSquirrelCage fed by voltage/frequency inverter"
   extends Modelica.Icons.Example;
+  import SI=Modelica.SIunits;
   constant Integer m=3 "Number of phases";
-  parameter Modelica.Units.SI.Voltage VNominal=100 "Nominal RMS voltage per phase";
-  parameter Modelica.Units.SI.Frequency fNominal=imc.imcData.fsNominal "Nominal frequency";
-  parameter Modelica.Units.SI.Torque TLoad=161.4 "Nominal load torque";
-  parameter Modelica.Units.SI.AngularVelocity wLoad(displayUnit="rev/min")=1440.45*2*Modelica.Constants.pi/60 "Nominal load speed";
-  parameter Modelica.Units.SI.Inertia JLoad=imc.imcData.Jr "Load's moment of inertia";
+  parameter SI.Voltage VNominal=100 "Nominal RMS voltage per phase";
+  parameter SI.Frequency fNominal=imc.imcData.fsNominal "Nominal frequency";
+  parameter SI.Torque TLoad=161.4 "Nominal load torque";
+  parameter SI.AngularVelocity wLoad(displayUnit="rev/min")=1440.45*2*Modelica.Constants.pi/60 "Nominal load speed";
+  parameter SI.Inertia JLoad=imc.imcData.Jr "Load's moment of inertia";
   EPIM.Components.InductionMachineSquirrelCage imc(wM(fixed=true), deltaM(fixed=true))
     annotation (Placement(transformation(extent={{-20,-50},{0,-30}})));
   Modelica.Electrical.Machines.Sensors.CurrentQuasiRMSSensor currentQuasiRMSSensor
     annotation (Placement(transformation(extent={{-10,10},{10,-10}}, rotation=270,
         origin={-10,-10})));
-  Modelica.Electrical.Polyphase.Sources.SignalVoltage signalVoltage(final m=m)
+  Modelica.Electrical.MultiPhase.Sources.SignalVoltage signalVoltage(final m=m)
     annotation (Placement(transformation(
         origin={-10,40},
         extent={{10,10},{-10,-10}},
         rotation=270)));
-  Modelica.Electrical.Polyphase.Basic.Star star(final m=m) annotation (
+  Modelica.Electrical.MultiPhase.Basic.Star star(final m=m) annotation (
       Placement(transformation(extent={{10,-10},{-10,10}},
         rotation=90,
         origin={10,40})));

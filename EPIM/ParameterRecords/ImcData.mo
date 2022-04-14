@@ -1,8 +1,8 @@
 within EPIM.ParameterRecords;
 record ImcData
-  import Modelica.Units.SI;
+  import SI=Modelica.SIunits;
   extends
-    Modelica.Electrical.Machines.Utilities.ParameterRecords.IM_SquirrelCageData(
+    Modelica.Electrical.Machines.Utilities.ParameterRecords.AIM_SquirrelCageData(
     final Js=Jr,
     final effectiveStatorTurns=1,
     final Lszero=Lssigma,
@@ -20,7 +20,7 @@ record ImcData
       final wRef=2*pi*fsNominal/p,
       final power_w=2));
   import Modelica.Constants.pi;
-  parameter Modelica.Units.SI.Angle orientation[m]=
+  parameter SI.Angle orientation[m]=
     {(k - 1)/m*2*pi for k in 1:m} "Orientation of phases";
   annotation(defaultComponentPrefixes="parameter", Icon(graphics={Text(
           extent={{-100,-10},{100,-30}},
